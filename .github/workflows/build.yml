@@ -11,7 +11,7 @@ name: '🏗️ Build and Test Plugin'
       - '**.csproj'
       - .github/workflows/build.yml
 env:
-  DOTNET_VERSION: 9.0.308
+  DOTNET_VERSION: 10.x
 jobs:
   build:
     name: 'build-${{matrix.os}}'
@@ -24,11 +24,11 @@ jobs:
           - windows-latest
           - macOS-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '${{ env.DOTNET_VERSION }}'
       - name: Install dependencies

@@ -16,7 +16,7 @@ jobs:
       - build
     steps:
       - name: Download Artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v8
         with:
           name: build-artifact
       - name: Prepare GitHub Release assets
@@ -27,7 +27,7 @@ jobs:
           done
           ls -l
       - name: Upload GitHub Release assets
-        uses: shogo82148/actions-upload-release-asset@v1.9.1
+        uses: shogo82148/actions-upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -35,14 +35,14 @@ jobs:
           asset_path: ./*
 
       - name: Checkout Source Repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: source-repo
           sparse-checkout: |
             build.yaml
 
       - name: Checkout Manifest Repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ankenyr/jellyfin-plugin-repo
           ref: master
@@ -50,7 +50,7 @@ jobs:
           path: manifest-repo
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.x'
 
