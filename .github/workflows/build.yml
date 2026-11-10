@@ -14,15 +14,7 @@ env:
   DOTNET_VERSION: 10.x
 jobs:
   build:
-    name: 'build-${{matrix.os}}'
-    runs-on: '${{ matrix.os }}'
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
-          - macOS-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
         with:
@@ -32,9 +24,26 @@ jobs:
         with:
           dotnet-version: '${{ env.DOTNET_VERSION }}'
       - name: Install dependencies
-        run: dotnet restore
+        run: |
+          dotnet restore
+          sudo apt-get install -y yq
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        id: build
+        run: |
+          dotnet publish --configuration Release --output ./bin
+          mapfile -t artifacts < <(yq -r '.artifacts[]' ./build.yaml)
+          ZIP_NAME="youtube-metadata_$(yq -r '.version' build.yaml).zip"
+          zip --junk-paths "${ZIP_NAME}" meta.json "${artifacts[@]/#/bin/}"
+          printf 'archive=%s\n' "${ZIP_NAME}" >> $GITHUB_OUTPUT
+      - uses: actions/upload-artifact@v7
+        id: upload
+        if: ${{ github.event_name == 'push' }}
+        with:
+          name: plugin.zip
+          path: ${{ steps.build.outputs.archive }}
+          archive: false
+          overwrite: true
+          retention-days: 7
   package:
     needs: build
     runs-on: ubuntu-latest
@@ -44,4 +53,4 @@ jobs:
         # Tests need to be updated to not fail, so ignore for now but still run
         continue-on-error: true
 
-  
+
