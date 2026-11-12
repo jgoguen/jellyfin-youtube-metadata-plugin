@@ -1,7 +1,7 @@
 ---
 name: "YouTube Metadata"
-guid: "b4b4353e-dc57-4398-82c1-de9079e7146a"
-version: "1.1.0.0"
+guid: "d6509067-b60e-4e06-b222-00e809dfd5e1"
+version: "1.1.0.1"
 targetAbi: "12.0.0"
 framework: "net10.0"
 owner: "jgoguen"
@@ -12,5 +12,8 @@ artifacts:
 - "Jellyfin.Plugin.YoutubeMetadata.dll"
 - "NYoutubeDLP.dll"
 - "System.IO.Abstractions.dll"
+- "TestableIO.System.IO.Abstractions.Wrappers.dll"
+- "Testably.Abstractions.FileSystem.Interface.dll"
 changelog: >
   v1.1.0.0 update to Jellyfin 12
+  v1.1.0.1 Fix build to include more needed DLLs, change project UUID

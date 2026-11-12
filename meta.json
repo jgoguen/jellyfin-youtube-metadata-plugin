@@ -1,12 +1,12 @@
 {
 	"category": "Metadata",
-	"changelog": "Update to Jellyfin 12, .NET 10\n",
+	"changelog": "Update to Jellyfin 12, .NET 10\nUpdate build to include more needed DLLs, change project UUID\n",
 	"description": "Provides YouTube metadata from the YouTube API and Youtube-dl metadata files.",
-	"guid": "ab7f18da-8841-4382-a006-f6618589c9bc",
+	"guid": "d6509067-b60e-4e06-b222-00e809dfd5e1",
 	"name": "YouTube Metadata",
 	"overview": "YouTube metadata provider",
 	"owner": "jgoguen",
 	"targetAbi": "12.0.0",
-	"timestamp": "2026-11-09T21:15:07Z",
-	"version": "1.1.0.0"
+	"timestamp": "2026-11-11T20:49:57Z",
+	"version": "1.1.0.1"
 }

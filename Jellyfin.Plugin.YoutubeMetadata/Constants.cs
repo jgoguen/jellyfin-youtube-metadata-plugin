@@ -1,9 +1,9 @@
-﻿namespace Jellyfin.Plugin.YoutubeMetadata
+namespace Jellyfin.Plugin.YoutubeMetadata
 {
     class Constants
     {
         public const string PluginName = "YoutubeMetadata";
-        public const string PluginGuid = "b4b4353e-dc57-4398-82c1-de9079e7146a";
+        public const string PluginGuid = "d6509067-b60e-4e06-b222-00e809dfd5e1";
         public const string ChannelUrl = "https://www.youtube.com/channel/{0}";
         public const string VideoUrl = "https://www.youtube.com/watch?v={0}";
         public const string SearchQuery = "https://www.youtube.com/results?search_query={0}&sp=EgIQAg%253D%253D";
